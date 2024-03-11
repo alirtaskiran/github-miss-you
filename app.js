@@ -3,7 +3,7 @@ fetch("https://api.github.com/users/alirtaskiran/repos")
   .then((data) => {
 
     data.forEach((repo) => {
-      console.log(repo.updated_at);
+      console.log(repo.pushed_at);
     
   })
 })
