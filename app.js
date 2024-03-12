@@ -1,5 +1,5 @@
 const url = "https://api.github.com/users";
-const token = "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";
+const token = "TOKEN_GOES_HERE";
 
 async function getUser(username) {
   const requestOptions = {
