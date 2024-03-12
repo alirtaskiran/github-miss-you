@@ -6,14 +6,29 @@ async function getUser(username) {
   return data;
 }
 
-getUser("alirtaskiran").then(data => console.log(data));
-
 async function getRepos(username) {
   let response = await fetch(url + `/${username}/repos`);
   let data = await response.json();
   return data;
 }
 
-getRepos("alirtaskiran").then(
-  data => data.forEach(repo => console.log(repo.pushed_at))
-);
+async function getLastPushed(username) {
+  let response = await fetch(url + `/${username}/repos`)
+    .then((response) => response.json())
+    .then((data) => {
+      let lastPushed = data.map((repo) => repo.pushed_at);
+      console.log(lastPushed.sort().reverse()[0]);
+    })
+    .catch((err) => console.log(err));
+  return response;
+}
+
+getLastPushed("alirtaskiran");
+
+// getRepos("alirtaskiran").then(
+//   data => data.forEach(repo => console.log(repo.pushed_at))
+// );
+
+// getRepos("Beornar").then(
+//   data => data.forEach(repo => console.log(repo.pushed_at))
+// );
