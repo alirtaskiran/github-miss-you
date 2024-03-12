@@ -1,4 +1,4 @@
-##github-miss-you
+# Github-Miss-You
 
 Belirtilen kullanıcıların, son commitlerinin üzerine ne kadar vakit geçtiğini gösteren bir uygulama.
 
