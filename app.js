@@ -13,17 +13,27 @@ async function getRepos(username) {
 }
 
 async function getLastPushed(username) {
-  let response = await fetch(url + `/${username}/repos`)
-    .then((response) => response.json())
-    .then((data) => {
-      let lastPushed = data.map((repo) => repo.pushed_at);
-      console.log(lastPushed.sort().reverse()[0]);
-    })
-    .catch((err) => console.log(err));
-  return response;
+  return new Promise((resolve, reject) => {
+    fetch(url + `/${username}/repos`)
+      .then((response) => response.json())
+      .then((data) => {
+        let lastPushed = data.map((repo) => repo.pushed_at);
+        resolve(lastPushed.sort().reverse()[0]);
+      })
+      .catch((err) => reject(err));
+  });
+
+  // let response = await fetch(url + `/${username}/repos`)
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     let lastPushed = data.map((repo) => repo.pushed_at);
+  //     console.log(lastPushed.sort().reverse()[0]);
+  //   })
+  //   .catch((err) => console.log(err));
+  // return response;
 }
 
-getLastPushed("alirtaskiran");
+getLastPushed("alirtaskiran").then((data) => console.log(data));
 
 // getRepos("alirtaskiran").then(
 //   data => data.forEach(repo => console.log(repo.pushed_at))
